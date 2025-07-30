@@ -1,50 +1,50 @@
-'use client'
+'use client';
 
-import { useState, useEffect } from 'react'
-import { MainLayout } from '@/components/layout/main-layout'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { useSession } from 'next-auth/react'
+import { useState, useEffect } from 'react';
+import { MainLayout } from '@/components/layout/main-layout';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { useSession } from 'next-auth/react';
 
 export default function SettingsPage() {
-  const { data: session } = useSession()
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [oldPassword, setOldPassword] = useState('')
-  const [newPassword, setNewPassword] = useState('')
-  const [loading, setLoading] = useState(false)
-  const [message, setMessage] = useState('')
+  const { data: session } = useSession();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [oldPassword, setOldPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     if (session?.user) {
-      setName(session.user.name || '')
-      setEmail(session.user.email || '')
+      setName(session.user.name || '');
+      setEmail(session.user.email || '');
     }
-  }, [session])
+  }, [session]);
 
   async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    setLoading(true)
-    setMessage('')
+    e.preventDefault();
+    setLoading(true);
+    setMessage('');
 
     try {
       const res = await fetch('/api/user/profile', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, oldPassword, newPassword }),
-      })
+      });
 
-      const data = await res.json()
-      if (!res.ok) throw new Error(data.error || 'Failed to save settings')
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to save settings');
 
-      setMessage('Settings saved successfully!')
-      setOldPassword('')
-      setNewPassword('')
+      setMessage('Settings saved successfully!');
+      setOldPassword('');
+      setNewPassword('');
     } catch (error: any) {
-      setMessage(error.message)
+      setMessage(error.message);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }
 
@@ -54,7 +54,9 @@ export default function SettingsPage() {
       {message && (
         <div
           className={`my-2 p-2 rounded ${
-            message.includes('successfully') ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+            message.includes('successfully')
+              ? 'bg-green-100 text-green-800'
+              : 'bg-red-100 text-red-800'
           }`}
         >
           {message}
@@ -63,11 +65,22 @@ export default function SettingsPage() {
       <form onSubmit={handleSubmit} className="space-y-6 max-w-md">
         <div>
           <Label htmlFor="name">Full Name</Label>
-          <Input id="name" value={name} onChange={(e) => setName(e.target.value)} required />
+          <Input
+            id="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
         </div>
         <div>
           <Label htmlFor="email">Email</Label>
-          <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <Input
+            id="email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
         </div>
         <hr className="my-6" />
         <div>
@@ -95,5 +108,5 @@ export default function SettingsPage() {
         </Button>
       </form>
     </MainLayout>
-  )
+  );
 }

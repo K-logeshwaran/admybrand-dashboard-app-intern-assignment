@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import {
   PieChart,
@@ -7,17 +7,17 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-} from 'recharts'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+} from 'recharts';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface TrafficSourceDataItem {
-  source: string
-  value: number
-  color: string
+  source: string;
+  value: number;
+  color: string;
 }
 
 interface TrafficSourceChartProps {
-  data: TrafficSourceDataItem[]
+  data: TrafficSourceDataItem[];
 }
 
 export function TrafficSourceChart({ data }: TrafficSourceChartProps) {
@@ -48,5 +48,5 @@ export function TrafficSourceChart({ data }: TrafficSourceChartProps) {
         </ResponsiveContainer>
       </CardContent>
     </Card>
-  )
+  );
 }

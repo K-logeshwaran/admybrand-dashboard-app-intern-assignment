@@ -15,22 +15,22 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react'
-
-
+import { useEffect, useState } from 'react';
 
 function ThemeToggleButton() {
-  const { theme, setTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
   // When mounted, client-only
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   if (!mounted) {
     // Avoid rendering until mounted on client
-    return <Button variant="ghost" size="icon" aria-label="Toggle theme" disabled />
+    return (
+      <Button variant="ghost" size="icon" aria-label="Toggle theme" disabled />
+    );
   }
 
   return (
@@ -40,11 +40,14 @@ function ThemeToggleButton() {
       aria-label="Toggle theme"
       onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
     >
-      {theme === 'light' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+      {theme === 'light' ? (
+        <Sun className="h-5 w-5" />
+      ) : (
+        <Moon className="h-5 w-5" />
+      )}
     </Button>
-  )
+  );
 }
-
 
 export function Header() {
   const { theme, setTheme } = useTheme();

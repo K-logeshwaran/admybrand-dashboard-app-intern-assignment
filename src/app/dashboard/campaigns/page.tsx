@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react';
 import { MainLayout } from '@/components/layout/main-layout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import jsPDF from 'jspdf'
-import autoTable from 'jspdf-autotable'
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 import {
   Table,
   TableBody,
@@ -20,7 +20,7 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-  ModalTitle
+  ModalTitle,
 } from '@/components/ui/modal';
 import { Label } from '@/components/ui/label';
 
@@ -142,29 +142,29 @@ export default function CampaignsPage() {
     URL.revokeObjectURL(url);
   }
 
-
   function exportToPDF() {
-  const doc = new jsPDF({ orientation: 'landscape' });
-  if (!campaigns.length) return;
-  const columns = Object.keys(campaigns[0]);
-  const data = campaigns.map(row => columns.map(field => String(row[field] ?? '')));
+    const doc = new jsPDF({ orientation: 'landscape' });
+    if (!campaigns.length) return;
+    const columns = Object.keys(campaigns[0]);
+    const data = campaigns.map((row) =>
+      columns.map((field) => String(row[field] ?? ''))
+    );
 
-  autoTable(doc, {
-    head: [columns],
-    body: data,
-    theme: 'grid',
-    tableWidth: 'wrap',
-  });
-  doc.save('campaigns.pdf');
-}
-
+    autoTable(doc, {
+      head: [columns],
+      body: data,
+      theme: 'grid',
+      tableWidth: 'wrap',
+    });
+    doc.save('campaigns.pdf');
+  }
 
   return (
     <MainLayout>
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold">Campaigns</h1>
         <div className="flex w-95 justify-between">
-          <Button   onClick={openCreateModal}>New Campaign</Button>
+          <Button onClick={openCreateModal}>New Campaign</Button>
           <Button onClick={exportToCSV}>Export CSV</Button>
           <Button onClick={exportToPDF}>Export PDF</Button>
         </div>
@@ -236,10 +236,10 @@ export default function CampaignsPage() {
       {modalOpen && (
         <Modal open={modalOpen} onOpenChange={setModalOpen}>
           <ModalContent>
-            
             <ModalHeader>
-                <ModalTitle>{editingId ? 'Edit Campaign' : 'New Campaign'}</ModalTitle>
-              
+              <ModalTitle>
+                {editingId ? 'Edit Campaign' : 'New Campaign'}
+              </ModalTitle>
             </ModalHeader>
             <ModalBody className="space-y-4">
               <div>

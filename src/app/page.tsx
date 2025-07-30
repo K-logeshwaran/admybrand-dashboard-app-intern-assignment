@@ -63,7 +63,8 @@ export default function Home() {
               </li>
               <li>
                 <span className="font-medium">Forgot your admin password?</span>{' '}
-                You can reseed the database or can create new account and access the dashboard.
+                You can reseed the database or can create new account and access
+                the dashboard.
               </li>
             </ul>
             <div className="mt-4 text-xs text-muted-foreground/80">

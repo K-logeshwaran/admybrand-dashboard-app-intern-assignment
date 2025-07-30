@@ -1,16 +1,16 @@
-'use client'
+'use client';
 
-import * as React from 'react'
-import * as Dialog from '@radix-ui/react-dialog'
-import { cn } from '@/lib/utils'
+import * as React from 'react';
+import * as Dialog from '@radix-ui/react-dialog';
+import { cn } from '@/lib/utils';
 
-export const Modal = Dialog.Root
+export const Modal = Dialog.Root;
 
-export const ModalTrigger = Dialog.Trigger
+export const ModalTrigger = Dialog.Trigger;
 
 export const ModalPortal = ({ children }: { children: React.ReactNode }) => (
   <Dialog.Portal>{children}</Dialog.Portal>
-)
+);
 
 export const ModalOverlay = React.forwardRef<
   React.ElementRef<typeof Dialog.Overlay>,
@@ -24,8 +24,8 @@ export const ModalOverlay = React.forwardRef<
     )}
     {...props}
   />
-))
-ModalOverlay.displayName = Dialog.Overlay.displayName
+));
+ModalOverlay.displayName = Dialog.Overlay.displayName;
 
 export const ModalContent = React.forwardRef<
   React.ElementRef<typeof Dialog.Content>,
@@ -44,19 +44,22 @@ export const ModalContent = React.forwardRef<
       {children}
     </Dialog.Content>
   </ModalPortal>
-))
-ModalContent.displayName = Dialog.Content.displayName
+));
+ModalContent.displayName = Dialog.Content.displayName;
 
 export const ModalHeader = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
-    className={cn('flex flex-col space-y-1.5 text-center sm:text-left', className)}
+    className={cn(
+      'flex flex-col space-y-1.5 text-center sm:text-left',
+      className
+    )}
     {...props}
   />
-)
-ModalHeader.displayName = 'ModalHeader'
+);
+ModalHeader.displayName = 'ModalHeader';
 
 export const ModalFooter = ({
   className,
@@ -69,8 +72,8 @@ export const ModalFooter = ({
     )}
     {...props}
   />
-)
-ModalFooter.displayName = 'ModalFooter'
+);
+ModalFooter.displayName = 'ModalFooter';
 
 export const ModalTitle = React.forwardRef<
   React.ElementRef<typeof Dialog.Title>,
@@ -78,11 +81,14 @@ export const ModalTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <Dialog.Title
     ref={ref}
-    className={cn('text-lg font-semibold leading-none tracking-tight', className)}
+    className={cn(
+      'text-lg font-semibold leading-none tracking-tight',
+      className
+    )}
     {...props}
   />
-))
-ModalTitle.displayName = Dialog.Title.displayName
+));
+ModalTitle.displayName = Dialog.Title.displayName;
 
 export const ModalDescription = React.forwardRef<
   React.ElementRef<typeof Dialog.Description>,
@@ -93,10 +99,13 @@ export const ModalDescription = React.forwardRef<
     className={cn('text-sm text-muted-foreground', className)}
     {...props}
   />
-))
-ModalDescription.displayName = Dialog.Description.displayName
+));
+ModalDescription.displayName = Dialog.Description.displayName;
 
-export const ModalBody = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
+export const ModalBody = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) => (
   <div className={cn('space-y-2 text-sm', className)} {...props} />
-)
-ModalBody.displayName = 'ModalBody'
+);
+ModalBody.displayName = 'ModalBody';

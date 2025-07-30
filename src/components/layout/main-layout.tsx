@@ -1,10 +1,10 @@
-import { Sidebar } from '@/components/layout/sidebar'
-import { Header } from '@/components/layout/header'
-import { cn } from '@/lib/utils'
+import { Sidebar } from '@/components/layout/sidebar';
+import { Header } from '@/components/layout/header';
+import { cn } from '@/lib/utils';
 
 interface MainLayoutProps {
-  children: React.ReactNode
-  className?: string
+  children: React.ReactNode;
+  className?: string;
 }
 
 export function MainLayout({ children, className }: MainLayoutProps) {
@@ -14,11 +14,9 @@ export function MainLayout({ children, className }: MainLayoutProps) {
         <Sidebar />
         <div className="flex-1">
           <Header />
-          <main className={cn('p-6', className)}>
-            {children}
-          </main>
+          <main className={cn('p-6', className)}>{children}</main>
         </div>
       </div>
     </div>
-  )
+  );
 }

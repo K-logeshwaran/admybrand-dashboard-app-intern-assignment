@@ -1,13 +1,21 @@
-'use client'
+'use client';
 
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from 'recharts';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface RevenueChartProps {
   data: Array<{
-    month: string
-    revenue: number
-  }>
+    month: string;
+    revenue: number;
+  }>;
 }
 
 export function RevenueChart({ data }: RevenueChartProps) {
@@ -23,15 +31,15 @@ export function RevenueChart({ data }: RevenueChartProps) {
             <XAxis dataKey="month" />
             <YAxis />
             <Tooltip />
-            <Line 
-              type="monotone" 
-              dataKey="revenue" 
-              stroke="#8884d8" 
+            <Line
+              type="monotone"
+              dataKey="revenue"
+              stroke="#8884d8"
               strokeWidth={2}
             />
           </LineChart>
         </ResponsiveContainer>
       </CardContent>
     </Card>
-  )
+  );
 }

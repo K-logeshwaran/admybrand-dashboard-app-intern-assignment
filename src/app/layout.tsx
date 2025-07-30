@@ -32,21 +32,20 @@ export default function RootLayout({
 }
 */
 
-
 // src/app/layout.tsx
-'use client'
+'use client';
 
-import { SessionProvider } from 'next-auth/react'
-import { Inter } from 'next/font/google'
-import './globals.css'
-import { ThemeProvider } from '@/components/theme-provider'
+import { SessionProvider } from 'next-auth/react';
+import { Inter } from 'next/font/google';
+import './globals.css';
+import { ThemeProvider } from '@/components/theme-provider';
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] });
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -63,5 +62,5 @@ export default function RootLayout({
         </SessionProvider>
       </body>
     </html>
-  )
+  );
 }

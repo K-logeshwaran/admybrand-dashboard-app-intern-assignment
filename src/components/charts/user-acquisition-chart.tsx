@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import {
   BarChart,
@@ -9,16 +9,16 @@ import {
   Tooltip,
   ResponsiveContainer,
   Legend,
-} from 'recharts'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+} from 'recharts';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface AcquisitionDataItem {
-  channel: string
-  users: number
+  channel: string;
+  users: number;
 }
 
 interface UserAcquisitionChartProps {
-  data: AcquisitionDataItem[]
+  data: AcquisitionDataItem[];
 }
 
 export function UserAcquisitionChart({ data }: UserAcquisitionChartProps) {
@@ -29,7 +29,10 @@ export function UserAcquisitionChart({ data }: UserAcquisitionChartProps) {
       </CardHeader>
       <CardContent className="pl-2">
         <ResponsiveContainer width="100%" height={300}>
-          <BarChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
+          <BarChart
+            data={data}
+            margin={{ top: 20, right: 30, left: 0, bottom: 5 }}
+          >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="channel" />
             <YAxis />
@@ -40,5 +43,5 @@ export function UserAcquisitionChart({ data }: UserAcquisitionChartProps) {
         </ResponsiveContainer>
       </CardContent>
     </Card>
-  )
+  );
 }

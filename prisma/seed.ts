@@ -1,11 +1,10 @@
-import { PrismaClient } from '@prisma/client'
-import bcrypt from 'bcrypt'
+import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcrypt';
 
-const prisma = new PrismaClient()
-
+const prisma = new PrismaClient();
 
 async function main() {
-  const hashedPassword = await bcrypt.hash('password123', 12)
+  const hashedPassword = await bcrypt.hash('password123', 12);
 
   const user = await prisma.user.upsert({
     where: { email: 'admin@admybrand.com' },
@@ -15,7 +14,7 @@ async function main() {
       name: 'Admin User',
       password: hashedPassword,
     },
-  })
+  });
 
   // Replace your existing campaign createMany with this, including createdAt dates
   await prisma.campaign.createMany({
@@ -72,17 +71,16 @@ async function main() {
       },
       // Add more campaigns if you want
     ],
-  })
+  });
 
-  console.log('Database seeded successfully!')
+  console.log('Database seeded successfully!');
 }
-
 
 main()
   .catch((e) => {
-    console.error(e)
-    process.exit(1)
+    console.error(e);
+    process.exit(1);
   })
   .finally(async () => {
-    await prisma.$disconnect()
-  })
+    await prisma.$disconnect();
+  });

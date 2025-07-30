@@ -1,9 +1,9 @@
 // src/components/layout/sidebar.tsx
-'use client'
+'use client';
 
-import { useState } from 'react'
-import Link from 'next/link'
-import { cn } from '@/lib/utils'
+import { useState } from 'react';
+import Link from 'next/link';
+import { cn } from '@/lib/utils';
 import {
   LayoutDashboard,
   BarChart,
@@ -11,19 +11,19 @@ import {
   Settings,
   Menu,
   X,
-} from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { ScrollArea } from '@/components/ui/scroll-area'
+} from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 const navItems = [
   { label: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
- // { label: 'Analytics', href: '/dashboard/analytics', icon: BarChart },
+  // { label: 'Analytics', href: '/dashboard/analytics', icon: BarChart },
   { label: 'Campaigns', href: '/dashboard/campaigns', icon: Activity },
   { label: 'Settings', href: '/dashboard/settings', icon: Settings },
-]
+];
 
 export function Sidebar() {
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(true);
 
   return (
     <aside
@@ -67,5 +67,5 @@ export function Sidebar() {
         </nav>
       </ScrollArea>
     </aside>
-  )
+  );
 }

@@ -3,7 +3,7 @@ export const mockMetrics = {
   activeUsers: 12847,
   conversions: 2146,
   growthRate: 18.2,
-}
+};
 
 export const mockRevenueData = [
   { month: 'Jan', revenue: 45000 },
@@ -12,7 +12,7 @@ export const mockRevenueData = [
   { month: 'Apr', revenue: 61000 },
   { month: 'May', revenue: 55000 },
   { month: 'Jun', revenue: 67000 },
-]
+];
 
 export const mockCampaigns = [
   {
@@ -25,4 +25,4 @@ export const mockCampaigns = [
     cost: 12500,
   },
   // Add more mock campaigns...
-]
+];
