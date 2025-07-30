@@ -3,6 +3,7 @@ import { prisma } from '@/lib/db';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '../auth/[...nextauth]/authOptions';
 //import { authOptions } from ''; // Adjust this path based on your file structure
+import type { Prisma } from '@prisma/client'
 
 // Types for payload
 interface CampaignCreatePayload {
@@ -18,14 +19,12 @@ export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
 
-    // Pagination params
     const page = parseInt(searchParams.get('page') || '1', 10);
     const pageSize = parseInt(searchParams.get('pageSize') || '10', 10);
 
-    // Search string (case-insensitive)
     const search = searchParams.get('search') || '';
 
-    const where = search
+    const where: Prisma.CampaignWhereInput = search
       ? { name: { contains: search, mode: 'insensitive' } }
       : {};
 
@@ -50,10 +49,7 @@ export async function GET(request: Request) {
     });
   } catch (error) {
     console.error('GET /api/campaigns error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch campaigns' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch campaigns' }, { status: 500 });
   }
 }
 

@@ -95,9 +95,9 @@ export default function CampaignsPage() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
     });
-
+    let data;
     try {
-      const data = await res.json();
+      data = await res.json();
       console.log('Response data:', data);
     } catch {
       console.log('No JSON response');
@@ -125,7 +125,7 @@ export default function CampaignsPage() {
 
   function exportToCSV() {
     if (!campaigns.length) return;
-    const headers = Object.keys(campaigns[0]);
+    const headers = Object.keys(campaigns[0]) as (keyof Campaign)[];
     const csvRows = [
       headers.join(','), // header row
       ...campaigns.map((row) =>
@@ -141,11 +141,13 @@ export default function CampaignsPage() {
     a.click();
     URL.revokeObjectURL(url);
   }
-
+    
   function exportToPDF() {
+
+
     const doc = new jsPDF({ orientation: 'landscape' });
     if (!campaigns.length) return;
-    const columns = Object.keys(campaigns[0]);
+    const columns = Object.keys(campaigns[0]) as (keyof Campaign)[];
     const data = campaigns.map((row) =>
       columns.map((field) => String(row[field] ?? ''))
     );

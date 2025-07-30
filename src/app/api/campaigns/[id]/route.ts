@@ -1,8 +1,12 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from '../../auth/[...nextauth]/route'; // Adjust path if needed
+import { authOptions } from '../../auth/[...nextauth]/authOptions';
+//import { authOptions } from '../../auth/[...nextauth]/route'; // Adjust path if needed
 
+
+
+type ParamsPromise = Promise<{ id: string }>;
 interface CampaignUpdatePayload {
   name?: string;
   clicks?: number;
@@ -14,9 +18,9 @@ interface CampaignUpdatePayload {
 
 export async function PUT(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: ParamsPromise } // correctly typed second argument
 ) {
-  const { id } = params;
+  const { id } = await params;
 
   try {
     // Get logged-in user
@@ -53,7 +57,7 @@ export async function PUT(
 
     return NextResponse.json(updated);
   } catch (error) {
-    console.error(`PUT /api/campaigns/${params.id} error:`, error);
+    
     return NextResponse.json(
       { error: 'Failed to update campaign' },
       { status: 500 }
@@ -61,11 +65,10 @@ export async function PUT(
   }
 }
 
-export async function DELETE(
-  request: Request,
-  { params }: { params: { id: string } }
+export async function DELETE(request: Request, 
+{ params }: { params: ParamsPromise } // correctly typed second argument
 ) {
-  const { id } = params;
+  const { id } = await params;
 
   try {
     // Get logged-in user
@@ -99,7 +102,7 @@ export async function DELETE(
 
     return NextResponse.json({ message: 'Campaign deleted successfully' });
   } catch (error) {
-    console.error(`DELETE /api/campaigns/${params.id} error:`, error);
+    
     return NextResponse.json(
       { error: 'Failed to delete campaign' },
       { status: 500 }

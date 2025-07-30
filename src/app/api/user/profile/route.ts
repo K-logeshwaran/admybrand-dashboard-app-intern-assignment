@@ -1,9 +1,11 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from '../../auth/[...nextauth]/route';
+//import { authOptions } from '../../auth/[...nextauth]/route';
+
 
 import { prisma } from '@/lib/db';
 import bcrypt from 'bcrypt';
+import { authOptions } from '../../auth/[...nextauth]/authOptions';
 
 export async function GET() {
   const session = await getServerSession(authOptions);
