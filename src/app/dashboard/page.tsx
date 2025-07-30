@@ -1,43 +1,55 @@
-import { MainLayout } from '@/components/layout/main-layout'
-import { MetricCard } from '@/components/dashboard/metric-card'
-import { RevenueChart } from '@/components/charts/revenue-chart'
-import { UserAcquisitionChart } from '@/components/charts/user-acquisition-chart'
-import { TrafficSourceChart } from '@/components/charts/traffic-source-chart'
+import { MainLayout } from '@/components/layout/main-layout';
+import { MetricCard } from '@/components/dashboard/metric-card';
+import { RevenueChart } from '@/components/charts/revenue-chart';
+import { UserAcquisitionChart } from '@/components/charts/user-acquisition-chart';
+import { TrafficSourceChart } from '@/components/charts/traffic-source-chart';
 
 async function getMetrics() {
-  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/dashboard/metrics`, { next: { revalidate: 60 } })
-  if (!res.ok) throw new Error('Failed to fetch metrics')
-  return res.json()
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/dashboard/metrics`, {
+    next: { revalidate: 60 },
+  });
+  if (!res.ok) throw new Error('Failed to fetch metrics');
+  return res.json();
 }
 
 async function getRevenueData() {
-  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/dashboard/revenue`, { next: { revalidate: 60 } })
-  if (!res.ok) throw new Error('Failed to fetch revenue data')
-  return res.json()
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/dashboard/revenue`, {
+    next: { revalidate: 60 },
+  });
+  if (!res.ok) throw new Error('Failed to fetch revenue data');
+  return res.json();
 }
 
 async function getUserAcquisitionData() {
-  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/dashboard/userAcquisition`, { next: { revalidate: 60 } })
-  if (!res.ok) throw new Error('Failed to fetch user acquisition data')
-  return res.json()
+  const res = await fetch(
+    `${process.env.NEXTAUTH_URL}/api/dashboard/userAcquisition`,
+    { next: { revalidate: 60 } }
+  );
+  if (!res.ok) throw new Error('Failed to fetch user acquisition data');
+  return res.json();
 }
 
 async function getTrafficSourceData() {
-  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/dashboard/trafficSources`, { next: { revalidate: 60 } })
-  if (!res.ok) throw new Error('Failed to fetch traffic source data')
-  return res.json()
+  const res = await fetch(
+    `${process.env.NEXTAUTH_URL}/api/dashboard/trafficSources`,
+    { next: { revalidate: 60 } }
+  );
+  if (!res.ok) throw new Error('Failed to fetch traffic source data');
+  return res.json();
 }
 
 export default async function DashboardPage() {
-  const [metrics, revenueData, userAcquisitionData, trafficSourceData] = await Promise.all([
-    getMetrics(),
-    getRevenueData(),
-    getUserAcquisitionData(),
-    getTrafficSourceData(),
-  ])
+  const [metrics, revenueData, userAcquisitionData, trafficSourceData] =
+    await Promise.all([
+      getMetrics(),
+      getRevenueData(),
+      getUserAcquisitionData(),
+      getTrafficSourceData(),
+    ]);
 
   return (
     <MainLayout>
+
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
@@ -83,5 +95,5 @@ export default async function DashboardPage() {
         </div>
       </div>
     </MainLayout>
-  )
+  );
 }
