@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from '../auth/[...nextauth]/route'; // Adjust this path based on your file structure
+import { authOptions } from '../auth/[...nextauth]/authOptions';
+//import { authOptions } from ''; // Adjust this path based on your file structure
 
 // Types for payload
 interface CampaignCreatePayload {
