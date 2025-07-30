@@ -41,8 +41,12 @@ export default function SettingsPage() {
       setMessage('Settings saved successfully!');
       setOldPassword('');
       setNewPassword('');
-    } catch (error: any) {
-      setMessage(error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setMessage(error.message);
+      } else {
+        setMessage('Error');
+      }
     } finally {
       setLoading(false);
     }

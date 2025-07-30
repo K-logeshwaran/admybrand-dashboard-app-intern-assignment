@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { signIn, getSession } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -33,7 +33,7 @@ export default function LoginPage() {
       } else {
         router.push('/dashboard');
       }
-    } catch (error) {
+    } catch (_error) {
       setError('Something went wrong');
     } finally {
       setLoading(false);
@@ -83,7 +83,8 @@ export default function LoginPage() {
             </Button>
 
             <div className="text-center text-sm">
-              Don't have an account?{' '}
+              <span>Don&apos;t have an account?</span>
+
               <Link href="/register" className="text-blue-600 hover:underline">
                 Sign up
               </Link>

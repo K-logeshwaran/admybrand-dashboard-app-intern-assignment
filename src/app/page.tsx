@@ -143,8 +143,8 @@ export default function Home() {
             </li>
             <li>
               <span className="font-medium">Download Reports:</span> Click
-              "Export CSV" or "Export PDF" in the Campaigns section to download
-              your data.
+              &quot;Export CSV&quot; or &quot;Export PDF&quot; in the Campaigns
+              section to download your data.
             </li>
             <li>
               <span className="font-medium">Customize:</span> Toggle between

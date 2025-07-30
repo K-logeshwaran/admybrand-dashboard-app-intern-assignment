@@ -50,7 +50,7 @@ function ThemeToggleButton() {
 }
 
 export function Header() {
-  const { theme, setTheme } = useTheme();
+  //  const { theme, setTheme } = useTheme();
 
   return (
     <header className="sticky top-0 z-10 flex h-16 shrink-0 items-center border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
